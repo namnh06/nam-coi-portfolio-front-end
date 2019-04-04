@@ -1,0 +1,51 @@
+.Login {
+  height: 100vh;
+
+  &:before {
+    content: "";
+    position: fixed;
+    left: 0;
+    right: 0;
+    height: 100vh;
+    background-image: url("../../../assets/images/girls-with-laptop.jpg");
+    filter: blur(5px);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    z-index: -1;
+  }
+
+  &__Row {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+
+    &__Col {
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      &__Form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border-radius: 2rem;
+        min-width: 50%;
+
+        &__Form {
+          &__Group {
+            &__Text__Create {
+              color: lightcoral;
+              text-decoration: underline;
+
+              &:hover {
+                color: lightgreen !important;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
