@@ -1,0 +1,60 @@
+<div class="container Register">
+  <div class="row Register__Row">
+    <div class="col-12 Register__Row__Col">
+      <form class="Register__Row__Col__Form bg-dark" [formGroup]="registerForm" (ngSubmit)="onRegisterButtonClicked()"
+        novalidate>
+        <div class="form-inline text-center mt-4">
+          <div class="form-group d-flex justify-content-center">
+            <img class="w-75" src="{{'assets/images/angular-logo.png'}}">
+          </div>
+        </div>
+        <div class="form-inline mt-4 w-50">
+          <div class="form-group w-100">
+            <input type="name" name="name" id="name" formControlName="name" class="form-control w-100"
+              placeholder="Name" required>
+            <!-- <span class="text-danger" ng-show="registerForm.name.$touched && registerForm.name.$error.required">Name
+              is
+              required</span> -->
+          </div>
+        </div>
+        <div class="form-inline mt-3 w-50">
+          <div class="form-group w-100">
+            <input type="email" name="email" id="email" class="form-control w-100" placeholder="Email"
+              formControlName="email" required>
+            <!-- <span class="text-danger" ng-show="registerForm.email.$touched && registerForm.email.$error.required">Email
+              is
+              required</span> -->
+          </div>
+        </div>
+        <div class="form-inline mt-3 w-50">
+          <div class="form-group w-100">
+            <input type="password" name="password" id="password" class="form-control w-100" placeholder="Password"
+              name="password" formControlName="password" required>
+            <!-- <span class="text-danger"
+              ng-show="registerForm.password.$touched && registerForm.password.$error.required">Password
+              is
+              required</span> -->
+          </div>
+        </div>
+        <div class="form-inline mt-3 w-50">
+          <div class="form-group w-100">
+            <input type="password" name="rePassword" id="rePassword" class="form-control w-100"
+              placeholder="Re-Password" name="rePassword" formControlName="rePassword" required>
+            <!-- <span class="text-danger"
+              ng-show="registerForm.password.$touched && registerForm.password.$error.required">Re-Password
+              is
+              required</span> -->
+          </div>
+        </div>
+        <div class="form-group mt-3 w-50">
+          <button class="btn btn-block btn-success text-uppercase" type="submit">Register</button>
+        </div>
+        <div class="form-group Register__Row__Col__Form__Form__Group">
+          <p><span class="text-white">Registered Already?</span>&nbsp;
+            <a class="text-success Register__Row__Col__Form__Form__Group__Text__Create" routerLink="/login">Sign In</a>
+          </p>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
