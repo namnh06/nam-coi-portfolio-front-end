@@ -7,7 +7,7 @@ export interface CreateUserInput {
   email: string;
   password: string;
 }
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class RegisterService {
   constructor(private apollo: Apollo) {}
 

@@ -1,0 +1,27 @@
+:host(app-login) {
+  min-width: 50%;
+}
+
+.Login {
+  min-width: 50%;
+
+  &__Form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 2rem;
+
+    &__Form {
+      &__Group {
+        &__Text__Create {
+          color: lightcoral;
+          text-decoration: underline;
+
+          &:hover {
+            color: lightgreen !important;
+          }
+        }
+      }
+    }
+  }
+}
