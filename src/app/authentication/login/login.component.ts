@@ -2,7 +2,6 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { LoginService } from './login.service';
 import { Credentials } from '../models/auth-data.model';
-import { map } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 
 import { Router } from '@angular/router';

@@ -13,6 +13,6 @@ export class HomeComponent implements OnInit {
 
   onSignOutClick(): void {
     localStorage.removeItem('np.token');
-    this.router.navigate(['/dashboard/login']);
+    this.router.navigate(['/authentication/login']);
   }
 }
