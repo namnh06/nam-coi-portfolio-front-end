@@ -12,7 +12,6 @@ export class RegisterService {
   constructor(private apollo: Apollo) {}
 
   register({ name, email, password }) {
-    console.log(name, email, password);
     const register = gql`
       mutation createUser($user: CreateUserInput) {
         createUser(CreateUserInput: $user) {
