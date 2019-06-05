@@ -1,0 +1,8 @@
+{
+	"auth": {
+		"angularnode35da02c5": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation"
+		}
+	}
+}

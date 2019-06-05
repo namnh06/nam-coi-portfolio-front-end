@@ -7,13 +7,13 @@ import { NotAuthGuardService } from './services/not-auth-guard.service';
 const rootRoutes: Routes = [
   {
     path: 'dashboard',
-    loadChildren: './dashboard/dashboard.module#DashboardModule',
+    loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule),
     canActivate: [AuthGuardService],
     canLoad: [AuthGuardService]
   },
   {
     path: 'authentication',
-    loadChildren: './authentication/authentication.module#AuthenticationModule',
+    loadChildren: () => import('./authentication/authentication.module').then(m => m.AuthenticationModule),
     canActivate: [NotAuthGuardService],
     canLoad: [NotAuthGuardService]
   },

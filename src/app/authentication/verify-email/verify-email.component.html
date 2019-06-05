@@ -1,0 +1,9 @@
+<form [formGroup]="verifyEmailForm" (submit)="onVerifyCodeSubmit()">
+  <mat-form-field class="">
+    <input matInput placeholder="Email" formControlName="email" required email>
+  </mat-form-field>
+  <mat-form-field class="">
+    <input matInput placeholder="Verify Code" formControlName="verifyCode" required>
+  </mat-form-field>
+  <button mat-raised-button color="primary" type="submit">Verify</button>
+</form>

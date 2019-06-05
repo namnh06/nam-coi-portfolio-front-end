@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import gql from 'graphql-tag';
 import { Apollo } from 'apollo-angular';
-import { CreateUserInput } from './register.service';
+import { CreateUserInput } from './sign-up.service';
 export interface CreateUserInput {
   name: string;
   email: string;
@@ -9,7 +9,7 @@ export interface CreateUserInput {
 }
 @Injectable({ providedIn: 'root' })
 export class RegisterService {
-  constructor(private apollo: Apollo) {}
+  constructor(private apollo: Apollo) { }
 
   register({ name, email, password }) {
     const register = gql`

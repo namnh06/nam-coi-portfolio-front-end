@@ -1,0 +1,28 @@
+<form class="Register__Form" [formGroup]="signUpForm" (ngSubmit)="onRegisterButtonClicked()" novalidate>
+  <div class="form-inline text-center mt-4">
+    <div class="form-group d-flex justify-content-center">
+      <img class="w-75" src="{{'assets/images/angular-logo.png'}}">
+    </div>
+  </div>
+
+  <mat-form-field>
+    <input matInput type="email" name="username" id="username" class="" placeholder="Email" formControlName="username"
+      required email>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput type="password" name="password" id="password" class=" w-100" placeholder="Password" name="password"
+      formControlName="password" required>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput type="password" name="rePassword" id="rePassword" class="" placeholder="Re-Password"
+      name="rePassword" formControlName="rePassword" required>
+  </mat-form-field>
+
+  <button mat-raised-button class="text-uppercase btn-success" type="submit">Register</button>
+  <!-- <div class="form-group Register__Form__Form__Group">
+    <p><span class="text-white">Registered Already?</span>&nbsp;
+      <a class="text-success Register__Form__Form__Group__Text__Create" routerLink="../login">Sign
+        In</a>
+    </p>
+  </div> -->
+</form>

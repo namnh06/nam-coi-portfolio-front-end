@@ -1,14 +1,24 @@
-:host(app-register) {
-  min-width: 50%;
+:host {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
-.Register {
+form {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Login {
+  min-width: 50%;
+
   &__Form {
     display: flex;
     flex-direction: column;
     align-items: center;
     border-radius: 2rem;
-
 
     &__Form {
       &__Group {
