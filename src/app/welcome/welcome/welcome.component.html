@@ -2,7 +2,15 @@
   welcome works!
 </p>
 
-<a routerLink="/dashboard/home">Home</a>
-<a routerLink="/authentication/login">login</a>
-<a routerLink="/authentication/register">register</a>
-<a routerLink="/authentication/verify-email">verify</a>
+<ul class="d-flex list-unstyled">
+  <li>
+    <a routerLink="/dashboard/home">Home</a>
+  </li>
+  <li>
+    <a routerLink="/authentication/sign-in" class="text-uppercase">sign in</a>
+  </li>
+  <li><a routerLink="/authentication/sign-up">register</a></li>
+  <li>
+    <a routerLink="/authentication/verify-email">verify</a>
+  </li>
+</ul>

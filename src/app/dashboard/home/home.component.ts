@@ -7,12 +7,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  constructor(private router: Router) {}
+  constructor(private router: Router) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   onSignOutClick(): void {
     localStorage.removeItem('np.token');
-    this.router.navigate(['/authentication/login']);
+    this.router.navigate(['/authentication/sign-in']);
   }
 }
