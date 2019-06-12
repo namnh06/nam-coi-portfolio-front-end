@@ -14,9 +14,14 @@ import { AngularMaterialModule } from './angular-material.module';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { LoaderSpinnerComponent } from './loader-spinner/loader-spinner.component';
 import { LoaderSpinnerInterceptor } from './interceptors/loader-spinner-interceptor';
+import { ErrorDialogComponent } from './error-dialog/error-dialog.component';
 
 @NgModule({
-  declarations: [AppComponent, PageNotFoundComponent, WelcomeComponent, LoaderSpinnerComponent],
+  declarations:
+    [AppComponent,
+      PageNotFoundComponent,
+      WelcomeComponent, LoaderSpinnerComponent,
+      ErrorDialogComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -31,6 +36,7 @@ import { LoaderSpinnerInterceptor } from './interceptors/loader-spinner-intercep
       multi: true
     }
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ErrorDialogComponent]
 })
 export class AppModule { }

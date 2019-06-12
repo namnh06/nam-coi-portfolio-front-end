@@ -1,15 +1,15 @@
-<form class="Login__Form" [formGroup]="signInForm" (submit)="onSubmit()" novalidate>
-  <p class="" [ngClass]="signInForm.invalid ? 'text-danger' : ''">Invalid Email Or Password</p>
+<form class="Login__Form" [formGroup]="signInForm" (submit)="onSignInSubmitted()" novalidate>
+  <p class="" *ngIf="!!formInvalid" [ngClass]="formInvalid ? 'text-danger' : ''">Invalid Email Or Password</p>
   <mat-form-field>
     <input matInput type="email" name="userName" id="userName" class="" placeholder="Email" formControlName="userName"
       required email>
   </mat-form-field>
   <mat-form-field>
-    <input matInput [type]="hide? 'password':'text'" name="password" id="password" class=" w-100" placeholder="Password"
-      name="password" formControlName="password" required minlength="8">
-    <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
-      [attr.aria-pressed]="hide">
-      <mat-icon>{{hide ? 'visibility_off':'visibility'}}</mat-icon>
+    <input matInput [type]="togglePassword? 'password':'text'" name="password" id="password" class=" w-100"
+      placeholder="Password" name="password" formControlName="password" required minlength="8">
+    <button type="button" mat-icon-button matSuffix (click)="togglePassword = !togglePassword"
+      [attr.aria-label]="'Hide password'" [attr.aria-pressed]="togglePassword">
+      <mat-icon>{{togglePassword ? 'visibility_off':'visibility'}}</mat-icon>
     </button>
   </mat-form-field>
   <button [disabled]="!signInForm.valid" type="submit" mat-raised-button
@@ -19,8 +19,6 @@
       an account</a>
   </p>
   <p class="text-right">
-    <a class=" Login__Form__Form__Group__Text__Create" routerLink="../reset-password">Forget
-      your
-      password?</a>
+    <a class=" Login__Form__Form__Group__Text__Create" routerLink="../reset-password">Forget your password?</a>
   </p>
 </form>

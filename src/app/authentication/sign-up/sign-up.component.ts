@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
-import { RegisterService } from './sign-up.service';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Auth } from 'aws-amplify';
+import { LoaderSpinnerService } from 'src/app/services/loader-spinner.service';
+import { AwsCognitoService } from 'src/app/services/aws-cognito.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -10,29 +11,28 @@ import { Auth } from 'aws-amplify';
   styleUrls: ['./sign-up.component.scss']
 })
 export class SignUpComponent implements OnInit {
+  togglePassword = true;
   signUpForm: FormGroup;
   constructor(
-    private registerService: RegisterService,
-    private route: Router
+    private router: Router,
+    private loaderSpinnerService: LoaderSpinnerService,
+    private fb: FormBuilder,
+    private awsCognitoService: AwsCognitoService
   ) { }
 
   ngOnInit(): void {
-    this.signUpForm = new FormGroup({
-      name: new FormControl(null),
-      username: new FormControl(null),
-      password: new FormControl(null),
-      rePassword: new FormControl(null)
-    });
+    this.signUpForm = this.fb.group({
+      userName: [null, [Validators.required, Validators.email]],
+      password: [null, [Validators.required, Validators.min(8)]]
+    })
   }
 
-  onRegisterButtonClicked(): any {
-    const { username, name, password, rePassword } = this.signUpForm.value;
-    Auth.signUp({
-      username,
-      password,
-    }).then(data => {
-      console.log(data);
-    }).catch(error => console.log(error));
-    return null;
+  onSignUpSubmitted(): void {
+
+    if (this.signUpForm.invalid) {
+      return;
+    }
+    const { userName: username, password } = this.signUpForm.value;
+    this.awsCognitoService.signUp(username, password);
   }
 }

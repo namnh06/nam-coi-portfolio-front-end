@@ -1,16 +1,19 @@
-<form class="Register__Form" [formGroup]="signUpForm" (ngSubmit)="onRegisterButtonClicked()" novalidate>
+<form class="" [formGroup]="signUpForm" (ngSubmit)="onSignUpSubmitted()" novalidate>
   <mat-form-field>
-    <input matInput type="email" name="username" id="username" class="" placeholder="Email" formControlName="username"
+    <input matInput type="email" name="userName" id="userName" class="" placeholder="Email" formControlName="userName"
       required email>
   </mat-form-field>
   <mat-form-field>
-    <input matInput type="password" name="password" id="password" class=" w-100" placeholder="Password" name="password"
-      formControlName="password" required>
+    <input matInput [type]="togglePassword? 'password':'text'" name="password" id="password" class=" w-100"
+      placeholder="Password" name="password" formControlName="password" required minlength="8">
+    <button type="button" mat-icon-button matSuffix (click)="togglePassword = !togglePassword"
+      [attr.aria-label]="'Hide password'" [attr.aria-pressed]="togglePassword">
+      <mat-icon>{{togglePassword ? 'visibility_off':'visibility'}}</mat-icon>
+    </button>
   </mat-form-field>
-  <mat-form-field>
-    <input matInput type="password" name="rePassword" id="rePassword" class="" placeholder="Re-Password"
-      name="rePassword" formControlName="rePassword" required>
-  </mat-form-field>
-
-  <button mat-raised-button class="text-uppercase btn-success" type="submit">Register</button>
+  <button [disabled]="!signUpForm.valid" mat-raised-button class="text-uppercase btn-success mb-3"
+    type="submit">Register</button>
+  <p><span class="">Already Have Account ?</span>&nbsp;
+    <a class=" " routerLink="../sign-in">Sign In</a>
+  </p>
 </form>

@@ -1,6 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { LoginService } from './sign-in.service';
 import { Credentials } from '../models/auth-data.model';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
@@ -10,6 +9,7 @@ import { LoaderSpinnerService } from 'src/app/services/loader-spinner.service';
 import { Validators } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
 import { min } from 'rxjs/operators';
+import { AwsCognitoService } from 'src/app/services/aws-cognito.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -18,19 +18,17 @@ import { min } from 'rxjs/operators';
 })
 export class SignInComponent implements OnInit, OnDestroy {
   token: string;
-  hide = true;
+  togglePassword = true;
+  signInForm: FormGroup;
+  formInvalid: boolean;
   private querySubscription: Subscription;
   constructor(
-    private loginService: LoginService,
     private router: Router,
     private http: HttpClient,
     private loaderSpinnerService: LoaderSpinnerService,
-    private fb: FormBuilder) { }
-  // signInForm = this.fb.group({
-  //   userName: ['', Validators.required],
-  //   password: ['', Validators.required, Validators.min(8)]
-  // })
-  signInForm: FormGroup;
+    private fb: FormBuilder,
+    private awsCognitoService: AwsCognitoService) { }
+
   ngOnInit(): void {
     this.signInForm = this.fb.group({
       userName: [null, [Validators.required, Validators.email]],
@@ -38,27 +36,13 @@ export class SignInComponent implements OnInit, OnDestroy {
     })
   }
 
-  onSubmit(): void {
-    console.log(this.signInForm);
+  onSignInSubmitted(): void {
     if (this.signInForm.invalid) {
+      this.formInvalid = true;
       return;
     }
-    const username = this.signInForm.value.userName;
-    const password = this.signInForm.value.password;
-
-    this.loaderSpinnerService.show();
-    Auth.signIn({
-      username,
-      password,
-    }).then(user => {
-      const token = user.signInUserSession.accessToken.jwtToken;
-      localStorage.setItem('np.token', token);
-      this.router.navigate(['dashboard/home']);
-    })
-      .catch(err => console.log(err))
-      .finally(() => {
-        this.loaderSpinnerService.hide();
-      });
+    const { userName: username, password } = this.signInForm.value;
+    this.awsCognitoService.signIn(username, password);
   }
 
   ngOnDestroy(): void {
